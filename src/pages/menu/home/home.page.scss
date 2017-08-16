@@ -1,0 +1,20 @@
+.total-volume {
+  float: right;
+}
+
+.set {
+  min-height: 1em;
+}
+.set-details {
+  border-radius: 1em;
+  color: white;
+  background-color: #32db64;
+  padding: 0.3em;
+  margin: 0.1em;
+  display: block;
+}
+
+ion-slides {
+  max-height: 100%;
+  overflow: scroll
+}

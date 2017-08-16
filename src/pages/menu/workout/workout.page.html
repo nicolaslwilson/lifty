@@ -1,0 +1,68 @@
+<ion-header>
+  <ion-navbar color="primary">
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>
+      Workout Entry
+    </ion-title>
+  </ion-navbar>
+  <ion-toolbar color="secondary">
+      <ion-title>Enter A Workout</ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+  <ion-card *ngFor="let lift of workout.lifts">
+    <ion-toolbar color="primary">
+      <ion-title>
+          {{lift.name | capitalize}}
+      </ion-title>
+    </ion-toolbar>
+    <ion-list padding>
+        <div *ngFor="let set of lift.sets; let i = index">
+          <span padding-right>Set {{i+1}}:</span>
+          <ion-chip color="secondary">
+            <ion-label padding-horizontal>
+              {{set.reps}}
+            </ion-label>
+          </ion-chip>
+          <span> x </span>
+          <ion-chip color="secondary" padding-horizontal>
+            <ion-label>
+              {{set.weight}} lbs.
+            </ion-label>
+          </ion-chip>
+          <button class="delete-set" ion-button small color="danger" clear round
+            (click)="lift.sets.splice(i,1)"
+            >
+            <ion-icon name="close"></ion-icon>
+          </button>
+        </div>
+    </ion-list>
+    <div text-right padding-vertical>
+      <ion-chip color="primary" padding-horizontal margin-right>
+          <ion-icon name="stats">
+          </ion-icon>
+          <ion-label>
+            {{lift.liftVolume}} lbs.
+          </ion-label>
+      </ion-chip>
+    </div>
+    <ion-item class="reps-input">
+        <ion-label floating>Reps</ion-label>
+        <ion-input type="number"
+        [value]="lift.reps"
+        (change)="inputReps(lift, $event.target.value)"></ion-input>
+    </ion-item>
+    <ion-item class="weight-input">
+        <ion-label floating>Weight</ion-label>
+        <ion-input type="number"
+        [value]="lift.weight"
+        (change)="inputWeight(lift, $event.target.value)"></ion-input>
+    </ion-item>
+    <button float-end ion-button (click)="addSet(lift)">
+      Add Set
+    </button>
+  </ion-card>
+  <button ion-button margin (click)="sendWorkout()">Complete Workout</button>
+</ion-content>

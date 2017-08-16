@@ -1,0 +1,43 @@
+<ion-header>
+    <ion-navbar hideBackButton color="primary">
+      <button ion-button menuToggle>
+        <ion-icon name="menu"></ion-icon>
+      </button>
+      <ion-title>
+        Lifty
+      </ion-title>
+    </ion-navbar>
+    <ion-toolbar color="secondary">
+        <ion-title>Recent Workouts</ion-title>
+    </ion-toolbar>
+  </ion-header>
+  <ion-content>
+    <ion-card *ngFor="let session of workoutSessions | async" padding>
+        <ion-toolbar color="primary">
+            <ion-title text-left><ion-icon name="calendar"></ion-icon> {{session.timestamp | date: 'short'}}</ion-title>
+        </ion-toolbar>
+      <ion-slides padding>
+        <ion-slide *ngFor="let lift of session.workout.lifts">
+          <ion-chip>
+              <ion-icon name="stats"></ion-icon>
+            <ion-label padding-horizontal>
+                {{lift.name | capitalize}}
+            </ion-label>
+          </ion-chip>
+          <ion-chip color="primary">
+            <ion-label padding-horizontal>{{lift.sets.length}} Sets</ion-label>
+          </ion-chip>
+          <ion-chip color="primary">
+              <ion-label padding-horizontal>Volume: {{lift.liftVolume}} lbs.</ion-label>
+          </ion-chip>
+        </ion-slide>
+      </ion-slides>
+      <div padding>
+          <ion-chip class="total-volume">
+              <ion-icon name="trending-up"></ion-icon>
+              <ion-label> {{session.workout.totalVolume}} lbs.</ion-label>
+            </ion-chip>
+
+      </div>
+    </ion-card>
+  </ion-content>

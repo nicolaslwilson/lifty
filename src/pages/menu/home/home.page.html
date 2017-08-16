@@ -1,0 +1,57 @@
+<ion-header>
+    <ion-navbar hideBackButton color="primary">
+      <button ion-button menuToggle>
+        <ion-icon name="menu"></ion-icon>
+      </button>
+      <ion-title>
+        Lifty
+      </ion-title>
+    </ion-navbar>
+  </ion-header>
+  <ion-content>
+    <div>
+        <ion-slides>
+            <ion-slide *ngFor="let session of workoutSessions | async">
+                <ion-card padding>
+                  <ion-toolbar color="primary">
+                      <ion-title text-left><ion-icon name="calendar"></ion-icon> {{session.timestamp | date: 'short'}}</ion-title>
+                  </ion-toolbar>
+                  <div class="lift" *ngFor="let lift of session.workout.lifts" padding>
+                    <div *ngIf="lift.sets.length">
+                        <div text-left>
+                            <ion-chip>
+                              <ion-icon name="stats"></ion-icon>
+                              <ion-label padding-horizontal>
+                                  {{lift.name | capitalize}}
+                              </ion-label>
+                            </ion-chip>
+                        </div>
+                        <ion-list>
+                          <ion-item class="set" *ngFor="let set of lift.sets; let i = index">
+                            <span class="set-details">#{{i+1}}: {{set.reps}} x {{set.weight}} lbs.</span>
+                          </ion-item>
+                        </ion-list>
+                        <div text-right>
+                            <ion-chip>
+                                <ion-icon name="stats"></ion-icon>
+                                <ion-label padding-horizontal>
+                                    {{lift.liftVolume}} lbs.
+                                </ion-label>
+                              </ion-chip>
+                        </div>
+                      </div>
+                    </div>
+                    <div padding>
+                        <ion-chip class="total-volume">
+                            <ion-icon name="trending-up"></ion-icon>
+                            <ion-label> {{session.workout.totalVolume}} lbs.</ion-label>
+                        </ion-chip>
+                      </div>
+                </ion-card>
+            </ion-slide>
+          </ion-slides>
+    </div>
+    <ion-fab bottom right>
+      <button ion-fab (click)="newWorkout()"><ion-icon name="add"></ion-icon></button>
+    </ion-fab>
+  </ion-content>
