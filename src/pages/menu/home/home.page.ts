@@ -1,12 +1,10 @@
 import { Component, ViewChild } from '@angular/core';
-import { Validators, FormBuilder } from '@angular/forms';
 import { NavController, Content } from 'ionic-angular';
 import { AngularFireDatabase, FirebaseListObservable } from 'angularfire2/database';
 import { AngularFireAuth } from 'angularfire2/auth';
 import { AuthenticatorService } from "../../../providers/authenticator";
-import { Loader } from '../../../providers/loader';
 import { User } from "../../../providers/user";
-import { Set, Lift, Workout} from '../../../providers/workout';
+import { Workout} from '../../../providers/workout';
 import { Subscription } from "rxjs/Subscription";
 import { WorkoutPage } from '../workout/workout.page';
 
@@ -28,12 +26,8 @@ export class HomePage {
     public navCtrl: NavController,
     public db: AngularFireDatabase,
     public afAuth: AngularFireAuth,
-    private loader: Loader,
-    private formBuilder: FormBuilder,
     private authenticatorService: AuthenticatorService
   ) {
-
-
 
   }
 
