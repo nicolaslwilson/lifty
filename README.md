@@ -1,6 +1,20 @@
 # Lifty
 
-Lifty is a simple Ionic2 app for logging workouts.
+Lifty is a simple Ionic2 app for logging workouts. 
+
+### Preview
+
+_Home Screen_
+
+![home](/screenshots/home.png)
+
+_Workout Entry_
+
+![workout entry](/screenshots/entry.png)
+
+_Workout History_
+
+![workout history](/screenshots/history.png)
 
 ## Getting Started
 
